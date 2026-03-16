@@ -1,0 +1,114 @@
+.landing-page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-animation {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, #18191c 0%, #0d0e10 100%);
+  z-index: 0;
+}
+
+.form-wrapper {
+  background-color: var(--bg-panel);
+  padding: 40px;
+  border-radius: 12px;
+  width: 450px;
+  max-width: 90%;
+  z-index: 1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  border: 1px solid var(--border-light);
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-accent {
+  color: var(--text-accent);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-field {
+  padding: 14px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-darker);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--text-accent);
+  box-shadow: 0 0 0 2px rgba(88, 101, 242, 0.2);
+}
+
+.join-btn {
+  background-color: var(--text-accent);
+  color: white;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-top: 10px;
+}
+
+.join-btn:hover {
+  background-color: var(--text-accent-hover);
+}
+
+.join-btn:active {
+  transform: translateY(2px);
+}
+
+.create-info {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.create-new-btn {
+  color: var(--text-accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--text-accent);
+  font-weight: 500;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.create-new-btn:hover {
+  color: var(--text-accent-hover);
+  border-color: var(--text-accent-hover);
+}
