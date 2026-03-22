@@ -1,9 +1,9 @@
 import React from 'react';
 import './Sidebar.css';
-import { FiUsers, FiLink, FiCheck } from 'react-icons/fi';
+import { FiUsers, FiLink, FiCheck, FiMic, FiMicOff, FiEdit, FiLock, FiUserX, FiFolder } from 'react-icons/fi';
 import { useState } from 'react';
 
-const Sidebar = ({ users, roomId }) => {
+const Sidebar = ({ users, roomId, adminId, currentSocketId, onAdminAction, children }) => {
   const [copied, setCopied] = useState(false);
 
   const copyRoomId = () => {
@@ -29,15 +29,33 @@ const Sidebar = ({ users, roomId }) => {
         <ul className="users-list">
           {users.map((user, idx) => (
             <li key={idx} className="user-item">
-              <div className="avatar">
-                {user.charAt(0).toUpperCase()}
+              <div className="avatar" style={{ backgroundColor: user.color }}>
+                {user.username.charAt(0).toUpperCase()}
                 <div className="status-dot"></div>
               </div>
-              <span className="user-name">{user}</span>
+              <span className="user-name">
+                {user.username} {user.id === adminId && '👑'} {user.id === currentSocketId && '(You)'}
+              </span>
+              
+              {currentSocketId === adminId && user.id !== currentSocketId && (
+                <div className="admin-actions" style={{ marginLeft: 'auto', display: 'flex', gap: '4px' }}>
+                  <button onClick={() => onAdminAction('toggle-mute', user.id)} title="Toggle Mute" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888' }}>
+                    {user.canSpeak ? <FiMic /> : <FiMicOff color="red" />}
+                  </button>
+                  <button onClick={() => onAdminAction('toggle-edit', user.id)} title="Toggle Edit" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888' }}>
+                    {user.canEdit ? <FiEdit /> : <FiLock color="red" />}
+                  </button>
+                  <button onClick={() => onAdminAction('kick', user.id)} title="Kick User" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888' }}>
+                    <FiUserX color="red" />
+                  </button>
+                </div>
+              )}
             </li>
           ))}
         </ul>
       </div>
+
+      {children}
     </div>
   );
 };
